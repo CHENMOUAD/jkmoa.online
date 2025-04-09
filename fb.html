@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Facebook广告培训 | 流量爆破指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#252B59',
+                        'navy-dark': '#1E2347',
+                        'navy-light': '#2F3573',
+                        'gold': '#FFD700',
+                        'gold-light': '#FFEB3B',
+                        'gold-dark': '#FFC107',
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s infinite linear',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        }
+                    }
+                }
+            }
+        };
+
+        function opensite() {
+    // 创建遮罩层
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 999;
+    `;
+
+    // 创建弹窗容器
+    const popup = document.createElement('div');
+    popup.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f8f9fa;
+        padding: 40px 60px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        z-index: 1000;
+        min-width: 400px;
+        border: 1px solid #dee2e6;
+    `;
+
+    // 弹窗内容
+    popup.innerHTML = `
+        <h3 style="margin-bottom: 25px; font-size: 1.5rem; color: #212529;">📱 联系方式</h3>
+        <div style="font-size: 1.1rem; line-height: 1.6; color: #495057;">
+            <p>Telegram: @snvtr2</p>
+            <p>微信: tangguo97a</p>
+        </div>
+        <button onclick="closePopup()" style="
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        ">关闭窗口</button>
+    `;
+
+    // 关闭函数
+    window.closePopup = function() {
+        document.body.removeChild(overlay);
+        document.body.removeChild(popup);
+    }
+
+    // 点击遮罩层关闭
+    overlay.onclick = closePopup;
+
+    // 添加到页面
+    document.body.appendChild(overlay);
+    document.body.appendChild(popup);
+}
+
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #252B59;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #252B59 0%, #1E2347 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .shimmer-bg {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 215, 0, 0.1) 0%,
+                rgba(255, 215, 0, 0.2) 50%,
+                rgba(255, 215, 0, 0.1) 100%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .btn-contact {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #1E2347;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .module-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .lesson-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #FFD700;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .float-element {
+            position: absolute;
+            opacity: 0.05;
+        }
+        
+        .fb-mockup {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .fb-header {
+            height: 50px;
+            background: #4267B2;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+        
+        .fb-content {
+            background: #1E2347;
+            min-height: 300px;
+            padding: 15px;
+        }
+        
+        .ripple-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.05);
+            animation: ripple 15s infinite;
+            box-shadow: 0 0 1px 0 #FFD700;
+        }
+        
+        .small {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .medium {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .large {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .xlarge {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .xxlarge {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .circle:nth-child(1) {
+            left: 5%;
+            top: 5%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            left: 35%;
+            top: 20%;
+            animation-delay: 1s;
+        }
+        
+        .circle:nth-child(3) {
+            left: 55%;
+            top: 35%;
+            animation-delay: 4s;
+        }
+        
+        .circle:nth-child(4) {
+            left: 80%;
+            top: 5%;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(5) {
+            left: 25%;
+            top: 60%;
+            animation-delay: 5s;
+        }
+        
+        .circle:nth-child(6) {
+            left: 80%;
+            top: 70%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ripple Background -->
+    <div class="ripple-background">
+        <div class="circle xxlarge"></div>
+        <div class="circle xlarge"></div>
+        <div class="circle large"></div>
+        <div class="circle medium"></div>
+        <div class="circle small"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4 bg-navy-dark border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                     
+                    <div>
+                        <h1 class="text-xl font-bold">腾飞<span class="text-gold">跨境出海</span></h1>
+                        <p class="text-xs text-gray-400">流量爆破实战指南</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                      <a href="index.html" class="text-white hover:text-gold transition-colors">首页</a>
+                    <a href="kol.html" class="text-white hover:text-gold transition-colors">网红营销</a>
+                    <a href="landpage.html" class="text-white hover:text-gold transition-colors">落地页制作</a>
+                    <a href="gg.html" class="text-white hover:text-gold transition-colors">谷歌广告培训</a>
+					 <a href="fb.html" class="text-white hover:text-gold transition-colors">facebook广告培训</a>
+                </div>
+                
+                <button onclick="opensite()" class="bg-gold text-navy-dark font-bold py-2 px-4 rounded-lg hover:bg-gold-dark transition-colors">
+                    立即咨询
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 hero-gradient">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="feature-badge inline-block text-gold py-1 px-3 rounded-full text-sm mb-4 border border-gold/30">
+                        <span>6年实战经验 · 系统化教学</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        <span class="gold-gradient">多年海外广告经验</span>
+                        <br>老板跪求不跳槽的投手思维
+                    </h2>
+                    
+                    <p class="text-xl text-gray-300 mb-8">
+                        6年实战提炼的<span class="text-gold font-bold">流量爆破指南</span>，从入门到精通，系统掌握Facebook广告投放技能
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-contact py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取课程详情
+                        </button>
+                        
+                        <a href="#modules" class="py-3 px-8 rounded-lg border border-gold text-gold hover:bg-gold/10 transition-colors flex items-center">
+                            <i class="fas fa-list-alt mr-2"></i>
+                            查看课程内容
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="fb-mockup">
+                        <div class="fb-header flex items-center space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+                                <i class="fab fa-facebook-f text-[#4267B2] text-lg"></i>
+                            </div>
+                            <span class="text-white font-medium">Facebook Ads Manager</span>
+                        </div>
+                        <div class="fb-content p-4">
+                            <div class="shimmer-bg p-4 rounded-lg mb-4">
+                                <div class="flex justify-between mb-2">
+                                    <div class="w-1/3 h-6 bg-navy-light/60 rounded"></div>
+                                    <div class="w-1/4 h-6 bg-gold/30 rounded"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="w-full h-4 bg-navy-light/60 rounded"></div>
+                                    <div class="w-5/6 h-4 bg-navy-light/60 rounded"></div>
+                                    <div class="w-full h-4 bg-navy-light/60 rounded"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-3 mb-4">
+                                <div class="w-1/3 p-2 bg-navy-light/40 rounded text-center">
+                                    <div class="text-gold text-xl font-bold">324%</div>
+                                    <div class="text-xs text-gray-300">ROI提升</div>
+                                </div>
+                                <div class="w-1/3 p-2 bg-navy-light/40 rounded text-center">
+                                    <div class="text-gold text-xl font-bold">-40%</div>
+                                    <div class="text-xs text-gray-300">CPA降低</div>
+                                </div>
+                                <div class="w-1/3 p-2 bg-navy-light/40 rounded text-center">
+                                    <div class="text-gold text-xl font-bold">5.2X</div>
+                                    <div class="text-xs text-gray-300">转化倍数</div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-navy-light/30 p-3 rounded">
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="w-8 h-8 rounded-full bg-gold/30"></div>
+                                    <div>
+                                        <div class="text-sm text-gold">流量爆破策略</div>
+                                        <div class="text-xs text-gray-400">优化中...</div>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-navy-dark rounded-full h-1.5">
+                                    <div class="bg-gold h-1.5 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Course Overview Section -->
+    <section id="overview" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">课程概览</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">系统化学习</h3>
+                    <p class="text-gray-300">
+                        从Meta广告生态到高阶优化技巧，5大模块19节课程，全面掌握Facebook广告投放技能。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">实战经验</h3>
+                    <p class="text-gray-300">
+                        6年海外广告投放经验精华提炼，分享真实案例和可复制的操作方法，立竿见影。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">快速提升</h3>
+                    <p class="text-gray-300">
+                        学完即用，掌握实操策略和技巧，轻松应对各行业广告投放挑战，成为抢手的投手高手。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-xl text-gray-300 mb-6 max-w-3xl mx-auto">
+                    不论你是广告新手还是有经验的投手，这套课程都能带你突破瓶颈，<br class="hidden md:block">掌握顶尖投手才懂的核心技巧。
+                </p>
+                
+               
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modules Section -->
+    <section id="modules" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">课程模块</h2>
+            
+            <!-- Module 1 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">01</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">Facebook广告基础认知</h3>
+                        <p class="text-gray-300">掌握Meta广告生态和账户结构，为成功投放打下坚实基础</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">Meta广告生态全貌</h4>
+                        <p class="text-gray-400 text-sm">与谷歌广告的本质区别：主动搜索 vs 兴趣推荐<br>广告目标选择指南（转化/引流/互动/表单）</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">广告账户结构设计</h4>
+                        <p class="text-gray-400 text-sm">广告组层级解析：Campaign→Ad Set→Ad<br>预算分配逻辑：CBO（Campaign Budget Optimization）开关技巧</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">广告政策避坑与快速过审</h4>
+                        <p class="text-gray-400 text-sm">敏感词/图片/落地页限制清单（减肥/金融/仿品）<br>规避"个人特征"文案（年龄/种族/健康状况）<br>申诉模板：被封广告/账户解封邮件写法</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 2 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">02</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">精准定向与受众策略</h3>
+                        <p class="text-gray-300">掌握高效受众挖掘和分层方法，确保广告投放到精准目标人群</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">受众分层黄金法则</h4>
+                        <p class="text-gray-400 text-sm">核心受众：兴趣关键词挖掘（用Audience Insights工具）<br>自定义受众：再营销用户分层（按行为/页面停留时长）<br>类似受众：1%相似度 vs 10%相似度的适用场景</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">Lookalike Audience进阶玩法</h4>
+                        <p class="text-gray-400 text-sm">种子数据选择：高价值用户（购买者 vs 加购用户）<br>排除重叠受众：防止同类产品抢量<br>动态调整策略：根据转化率调整相似度范围</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">排除无效流量的4种方法</h4>
+                        <p class="text-gray-400 text-sm">定位排除：屏蔽竞争对手员工/无效地区<br>设备排除：过滤低端机型用户<br>行为排除：剔除"频繁退款"标签用户</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">B2B行业定向组合拳</h4>
+                        <p class="text-gray-400 text-sm">企业规模/行业/职位定向（LinkedIn数据整合）<br>表单广告优化：减少填写字段+自动填充功能</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 3 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">03</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">广告创意与素材优化</h3>
+                        <p class="text-gray-300">学习高转化创意制作和测试方法，提升广告吸引力和点击率</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">高转化创意公式</h4>
+                        <p class="text-gray-400 text-sm">视频前三秒必杀技（悬念/痛点/反常识开场）<br>文案模板：FAB法则（功能+优势+利益）<br>移动端优化：竖版视频/文字占比/按钮位置</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">动态创意（DCO）自动化测试</h4>
+                        <p class="text-gray-400 text-sm">标题/文案/图片/CTA组合测试规则<br>用AI工具生成多版本素材（Canva+Meta AI）<br>数据解读：优先关停低效组合</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">Instagram Reels广告实战</h4>
+                        <p class="text-gray-400 text-sm">Reels原生感设计：避免"硬广"违和感<br>音乐选择与字幕排版技巧<br>互动指标优化：引导点赞/评论话术</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">创意疲劳应对策略</h4>
+                        <p class="text-gray-400 text-sm">监测指标：频次超过3次时如何迭代素材<br>素材库管理：按季度规划内容主题</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 4 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">04</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">投放策略与数据优化</h3>
+                        <p class="text-gray-300">系统学习出价策略和版位优化技巧，降低获客成本，提升ROI</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">出价策略科学选择</h4>
+                        <p class="text-gray-400 text-sm">手动出价 vs 自动出价（最低成本/目标ROAS）<br>预算有限时选择"最低成本带上限"<br>大促期间出价调整：提前48小时加价</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">版位优化与排除技巧</h4>
+                        <p class="text-gray-400 text-sm">区分Feed/Stories/Reels版位表现<br>排除低效版位（Right Column Audience Network）<br>案例：游戏App如何通过版位调整降低CPI 30%</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">转化漏斗全周期优化</h4>
+                        <p class="text-gray-400 text-sm">冷启动期：广泛定向+互动目标<br>成熟期：精准分层+转化目标<br>衰退期：再营销+促销刺激</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">A/B测试系统方法论</h4>
+                        <p class="text-gray-400 text-sm">单变量测试原则（仅改标题/图片/受众）<br>结果解读：置信度>95%才判定胜出<br>工具：用Facebook A/B Testing功能</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 5 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">05</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">高阶玩法与行业案例</h3>
+                        <p class="text-gray-300">掌握行业特定策略和高级技巧，应对不同垂直领域的营销挑战</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">电商广告爆单公式</h4>
+                        <p class="text-gray-400 text-sm">动态产品广告（DPA）优化：自动匹配用户浏览记录<br>弃购挽回广告：倒计时+优惠码组合</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">Messenger聊天广告</h4>
+                        <p class="text-gray-400 text-sm">自动回复话术设计与转化路径优化</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">学员见证</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">WZ</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">王总监</h5>
+                            <p class="text-xs text-gray-400">电商营销负责人</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "学习了课程后，团队广告ROI提升了156%，CPA下降了30%。尤其是受众分层和Lookalike策略非常实用，立刻就能看到效果。讲师的实战经验非常丰富，能给出针对性的建议。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">ZY</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">张女士</h5>
+                            <p class="text-xs text-gray-400">独立广告师</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "作为一名独立广告师，这套课程让我接单能力大增。特别是创意优化和A/B测试的内容，帮我解决了很多客户的投放难题。课程内容系统全面，从基础到高阶都有详细讲解，非常值得。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">LC</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">李总</h5>
+                            <p class="text-xs text-gray-400">跨境电商创始人</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "之前我们每月在Facebook上浪费了大量广告费却没有好的效果，学习课程后，团队整体投放水平提升了一大截。尤其是动态创意和电商爆单公式的内容，帮我们提升了3倍的销售额。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <div class="bg-navy p-8 md:p-12 rounded-2xl border border-gold/30 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">准备成为Facebook广告高手？</h2>
+                        <p class="text-gray-300">
+                            立即联系我们获取详细课程介绍和学习方案，掌握顶尖投手的核心技能，提升广告投放效果和职业竞争力。
+                        </p>
+                        <div class="mt-4 flex items-center text-gold">
+                            <i class="fas fa-certificate mr-2"></i>
+                            <span>限时优惠：现在咨询可获得一对一投放诊断服务</span>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/3">
+                        <button onclick="opensite()" class="w-full bg-gradient-to-r from-gold to-gold-dark text-navy-dark font-bold py-4 px-6 rounded-lg shadow-lg transition-all flex items-center justify-center hover:shadow-xl hover:-translate-y-1">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            联系我们
+                        </button>
+                        <div class="text-center mt-3 text-gray-400">
+                            <p>Telegram: @snvtr2</p>
+                            <p>微信: tangguo97a</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-navy-dark py-8 border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-6">
+                <div class="flex items-center space-x-2">
+                    <div class="h-8 w-8 bg-gold rounded-lg flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-navy-dark text-sm"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold">FB<span class="text-gold">广告培训</span></h1>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-400 text-sm max-w-2xl mx-auto">
+                本课程专注于Facebook广告投放技巧教学，帮助广告从业者提升专业技能和实战能力。
+                所有内容均遵循Facebook广告政策和相关法律法规。
+            </p>
+ <div class="flex flex-col items-center md:items-end mb-6 md:mb-0">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <span class="text-white">联系我们：</span>
+                        <a href="#" onclick="opensite(); return false;" class="text-gold hover:text-gold-light transition-colors">
+                            <i class="fab fa-telegram-plane mr-1"></i> @snvtr2
+                        </a>
+                        <a href="#" onclick="opensite(); return false;" class="text-gold hover:text-gold-light transition-colors">
+                            <i class="fab fa-weixin mr-1"></i> tangguo97a
+                        </a>
+                    </div>
+                </div>
+            <div class="border-t border-gold/10 mt-6 pt-6 text-center">
+                <p class="text-sm text-gray-500">© 2023 腾飞跨境出海服务. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for the scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

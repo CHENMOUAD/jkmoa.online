@@ -1,0 +1,915 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Google广告培训 | 转化率翻倍系统课</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#252B59',
+                        'navy-dark': '#1E2347',
+                        'navy-light': '#2F3573',
+                        'gold': '#FFD700',
+                        'gold-light': '#FFEB3B',
+                        'gold-dark': '#FFC107',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s infinite linear',
+                        'float': 'float 3s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        glow: {
+                            '0%, 100%': { boxShadow: '0 0 10px rgba(255, 215, 0, 0.3)' },
+                            '50%': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.6)' }
+                        }
+                    }
+                }
+            }
+        };
+
+function opensite() {
+    // 创建遮罩层
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.6);
+        z-index: 999;
+    `;
+
+    // 创建弹窗容器
+    const popup = document.createElement('div');
+    popup.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f8f9fa;
+        padding: 40px 60px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        z-index: 1000;
+        min-width: 400px;
+        border: 1px solid #dee2e6;
+    `;
+
+    // 弹窗内容
+    popup.innerHTML = `
+        <h3 style="margin-bottom: 25px; font-size: 1.5rem; color: #212529;">📱 联系方式</h3>
+        <div style="font-size: 1.1rem; line-height: 1.6; color: #495057;">
+            <p>Telegram: @snvtr2</p>
+            <p>微信: tangguo97a</p>
+        </div>
+        <button onclick="closePopup()" style="
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        ">关闭窗口</button>
+    `;
+
+    // 关闭函数
+    window.closePopup = function() {
+        document.body.removeChild(overlay);
+        document.body.removeChild(popup);
+    }
+
+    // 点击遮罩层关闭
+    overlay.onclick = closePopup;
+
+    // 添加到页面
+    document.body.appendChild(overlay);
+    document.body.appendChild(popup);
+}
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #252B59;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #252B59 0%, #1E2347 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .shimmer-bg {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 215, 0, 0.1) 0%,
+                rgba(255, 215, 0, 0.2) 50%,
+                rgba(255, 215, 0, 0.1) 100%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+        }
+        
+        .feature-badge {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        .btn-contact {
+            background: linear-gradient(90deg, #FFD700, #FFC107);
+            color: #1E2347;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-contact:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .module-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .lesson-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #FFD700;
+        }
+        
+        .google-colors {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            height: 40px;
+        }
+        
+        .google-letter {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .g-blue { color: #4285F4; }
+        .g-red { color: #EA4335; }
+        .g-yellow { color: #FBBC05; }
+        .g-green { color: #34A853; }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .float-element {
+            position: absolute;
+            opacity: 0.05;
+        }
+        
+        .ripple-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+        
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.05);
+            animation: ripple 15s infinite;
+            box-shadow: 0 0 1px 0 #FFD700;
+        }
+        
+        .small {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .medium {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .large {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .xlarge {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .xxlarge {
+            width: 500px;
+            height: 500px;
+        }
+        
+        .circle:nth-child(1) {
+            left: 5%;
+            top: 5%;
+            animation-delay: 0s;
+        }
+        
+        .circle:nth-child(2) {
+            left: 35%;
+            top: 20%;
+            animation-delay: 1s;
+        }
+        
+        .circle:nth-child(3) {
+            left: 55%;
+            top: 35%;
+            animation-delay: 4s;
+        }
+        
+        .circle:nth-child(4) {
+            left: 80%;
+            top: 5%;
+            animation-delay: 2s;
+        }
+        
+        .circle:nth-child(5) {
+            left: 25%;
+            top: 60%;
+            animation-delay: 5s;
+        }
+        
+        .circle:nth-child(6) {
+            left: 80%;
+            top: 70%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(0.8);
+            }
+        }
+        
+        .progress-ring-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+            transform-origin: center;
+        }
+        
+        .progress-ring-circle {
+            stroke: #FFD700;
+            stroke-width: 8;
+            fill: transparent;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s;
+        }
+        
+        .progress-ring-bg {
+            stroke: rgba(255, 215, 0, 0.2);
+            stroke-width: 8;
+            fill: transparent;
+        }
+        
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ripple Background -->
+    <div class="ripple-background">
+        <div class="circle xxlarge"></div>
+        <div class="circle xlarge"></div>
+        <div class="circle large"></div>
+        <div class="circle medium"></div>
+        <div class="circle small"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="py-4 bg-navy-dark border-b border-gold/20">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    
+                    <div>
+                      <h1 class="text-lg font-bold">腾飞<span class="text-gold">跨境出海</span></h1>
+                        <p class="text-xs text-gray-400">转化率翻倍系统课</p>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                      <a href="index.html" class="text-white hover:text-gold transition-colors">首页</a>
+                    <a href="kol.html" class="text-white hover:text-gold transition-colors">网红营销</a>
+                    <a href="landpage.html" class="text-white hover:text-gold transition-colors">落地页制作</a>
+                    <a href="gg.html" class="text-white hover:text-gold transition-colors">谷歌广告培训</a>
+					 <a href="fb.html" class="text-white hover:text-gold transition-colors">facebook广告培训</a>
+                </div>
+                
+                <button onclick="opensite()" class="bg-gold text-navy-dark font-bold py-2 px-4 rounded-lg hover:bg-gold-dark transition-colors">
+                    立即咨询
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-20 hero-gradient">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="feature-badge inline-block text-gold py-1 px-3 rounded-full text-sm mb-4 border border-gold/30">
+                        <span>多年海外广告经验 · 系统培训</span>
+                    </div>
+                    
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-shadow">
+                        <span class="gold-gradient">从新手到投放总监</span>
+                        <br>让广告转化率翻倍的系统拆解法
+                    </h2>
+                    
+                    <p class="text-xl text-gray-300 mb-8">
+                        掌握谷歌广告核心玩法，从账户结构到数据分析，<span class="text-gold font-bold">系统提升投放效果</span>
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="opensite()" class="btn-contact py-3 px-8 rounded-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            获取课程详情
+                        </button>
+                        
+                        <a href="#modules" class="py-3 px-8 rounded-lg border border-gold text-gold hover:bg-gold/10 transition-colors flex items-center">
+                            <i class="fas fa-list-alt mr-2"></i>
+                            查看课程内容
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold to-gold-light rounded-xl blur-lg opacity-30"></div>
+                        <div class="relative bg-navy-dark p-6 rounded-xl border border-gold/30">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                                        <div class="google-colors" style="transform: scale(0.8);">
+                                            <span class="google-letter g-blue">G</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-white">Google Ads</h3>
+                                        <p class="text-xs text-gray-400">广告管理平台</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gold/10 px-3 py-1 rounded-full">
+                                    <span class="text-gold text-sm">专业版</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6 space-y-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-white">广告转化率</span>
+                                    <span class="text-gold">+175%</span>
+                                </div>
+                                <div class="w-full bg-navy/80 rounded-full h-2">
+                                    <div class="bg-gold h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-white">获客成本 (CPA)</span>
+                                    <span class="text-gold">-45%</span>
+                                </div>
+                                <div class="w-full bg-navy/80 rounded-full h-2">
+                                    <div class="bg-gold h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                                
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-white">投资回报率 (ROAS)</span>
+                                    <span class="text-gold">+210%</span>
+                                </div>
+                                <div class="w-full bg-navy/80 rounded-full h-2">
+                                    <div class="bg-gold h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-center">
+                                <div class="progress-ring-container">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring-bg" cx="60" cy="60" r="45"></circle>
+                                        <circle class="progress-ring-circle" cx="60" cy="60" r="45" style="stroke-dashoffset: 42.45"></circle>
+                                    </svg>
+                                    <div class="progress-text">85%</div>
+                                    <span class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-sm text-gray-300">学员效果提升率</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Course Overview Section -->
+    <section id="overview" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">课程概览</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">全面系统</h3>
+                    <p class="text-gray-300">
+                        从基础概念到高级策略，13节专业课程，逐步掌握Google广告所有核心技能。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">实用工具</h3>
+                    <p class="text-gray-300">
+                        精选行业一线工具与软件，配套实操教学，帮你打造高效投放工作流。
+                    </p>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-xl">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-gold text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">效果翻倍</h3>
+                    <p class="text-gray-300">
+                        独家转化率优化方法论，成熟的问题诊断框架，让每一分广告费都产生最大价值。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-navy-dark p-8 rounded-xl border border-gold/20 shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-gold mb-2">3+</div>
+                        <p class="text-gray-300">核心模块</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gold mb-2">13</div>
+                        <p class="text-gray-300">专业课时</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gold mb-2">25+</div>
+                        <p class="text-gray-300">实战技巧</p>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-gold mb-2">10+</div>
+                        <p class="text-gray-300">行业案例</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modules Section -->
+    <section id="modules" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">课程模块</h2>
+            
+            <!-- Module 1 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">01</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">谷歌广告基础认知</h3>
+                        <p class="text-gray-300">全面了解Google广告生态，掌握账户结构与政策要点</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">谷歌广告生态全貌</h4>
+                        <p class="text-gray-400 text-sm">什么是搜索广告/展示广告/视频广告/购物广告？<br>谷歌广告与其他平台（Meta、TikTok）的区别<br>广告类型选择指南：根据目标选对形式</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">账户结构搭建逻辑</h4>
+                        <p class="text-gray-400 text-sm">账户-广告系列-广告组-关键词的层级关系<br>新手常见错误：预算分配不均、结构混乱</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">广告政策避坑指南</h4>
+                        <p class="text-gray-400 text-sm">禁用内容清单（仿品、医疗等敏感类目）<br>快速过审技巧：文案、图片、落地页合规要点<br>被封账户申诉流程演示</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 2 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-12">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">02</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">投放策略与优化</h3>
+                        <p class="text-gray-300">从关键词到落地页，全面提升广告系列效果的核心技巧</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">关键词精准狙击法</h4>
+                        <p class="text-gray-400 text-sm">长尾词挖掘工具实操（Keyword Planner、SEMrush）<br>匹配类型选择：广泛/词组/精准的适用场景<br>否定关键词添加策略</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">广告文案黄金公式</h4>
+                        <p class="text-gray-400 text-sm">高点击率标题的5种写法（痛点+数字+指令）<br>描述文案结构：卖点分层+行动号召<br>A/B测试方法：如何科学对比文案效果</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">出价策略深度解析</h4>
+                        <p class="text-gray-400 text-sm">手动CPC vs 智能出价（tCPA/tROAS）<br>预算有限时如何选择出价策略<br>季节性行业出价调整技巧</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">落地页转化率翻倍法</h4>
+                        <p class="text-gray-400 text-sm">避免"广告-落地页"内容断层<br>高转化页面必备元素（信任标志、CTA按钮位置）<br>工具：用Google Optimize做A/B测试</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">展示广告定向黑科技</h4>
+                        <p class="text-gray-400 text-sm">受众分层：再营销列表/相似受众/自定义意图<br>版位排除技巧（过滤低质网站）<br>动态再营销广告搭建流程</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">YouTube视频广告实战</h4>
+                        <p class="text-gray-400 text-sm">前5秒必杀技：3种高留存开场设计<br>定向组合拳：兴趣+关键词+人群画像<br>数据分析：观看时长 vs 转化成本取舍</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 3 -->
+            <div class="module-card bg-navy p-6 md:p-8 rounded-xl mb-8">
+                <div class="flex flex-col md:flex-row items-start mb-6">
+                    <div class="flex-shrink-0 w-14 h-14 bg-gold/10 rounded-full flex items-center justify-center mb-4 md:mb-0 md:mr-5">
+                        <span class="text-gold font-bold text-xl">03</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gold mb-2">数据分析与诊断</h3>
+                        <p class="text-gray-300">精通数据解读与竞争分析，持续优化广告系列表现</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gold/10 pt-6 space-y-4">
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">数据看板核心指标</h4>
+                        <p class="text-gray-400 text-sm">关键指标解读：CTR/CPC/转化率/ROAS<br>诊断工具：维度细分（设备/时段/地域）<br>快速定位问题：高消费低转化广告排查</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">Google Analytics 4联动玩法</h4>
+                        <p class="text-gray-400 text-sm">事件追踪设置（表单提交/按钮点击）<br>用户路径分析：从广告点击到转化的行为漏斗</p>
+                    </div>
+                    
+                    <div class="lesson-item">
+                        <h4 class="font-bold mb-1">竞争对手反向拆解</h4>
+                        <p class="text-gray-400 text-sm">用SEMrush/Ahrefs扒对手关键词<br>Spy工具分析竞品广告策略<br>竞品预算估算与差异化打法</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button onclick="opensite()" class="btn-contact py-3 px-8 rounded-lg inline-flex items-center">
+                    <i class="fas fa-plus-circle mr-2"></i>
+                    查看更多课程内容
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">学习收获</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-bolt text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">效果立竿见影</h3>
+                            <p class="text-gray-300">学习即可应用，平均帮助学员将广告转化率提升85%以上，CPA降低40%以上。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">系统思维培养</h3>
+                            <p class="text-gray-300">建立完整的广告投放思维框架，具备独立分析和解决问题的能力。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-rocket text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">职业能力提升</h3>
+                            <p class="text-gray-300">掌握顶尖投手必备技能，快速晋升为团队核心，提升职场竞争力。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-navy-dark p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-hand-holding-usd text-gold text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">预算效益最大化</h3>
+                            <p class="text-gray-300">无论大小预算，都能通过精准投放和优化策略，获得最佳投资回报率。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 bg-navy-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 section-title">学员见证</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">LJ</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">李经理</h5>
+                            <p class="text-xs text-gray-400">跨境电商营销主管</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "我们之前每月在Google上花费数万美金，但效果一般。学习课程后，团队将CPA降低了38%，转化率提升了90%。特别是关键词精准狙击法和落地页优化部分特别实用，值得反复学习。"
+                    </p>
+                </div>
+                
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">ZY</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">张女士</h5>
+                            <p class="text-xs text-gray-400">SaaS公司市场经理</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "针对B2B行业的投放策略分享非常到位，学完后立刻调整了账户结构和出价策略，一个月内表单转化成本降低了45%。课程内容系统全面，从基础到高阶都有详细讲解，强烈推荐！"
+                    </p>
+                </div>
+                
+                <div class="bg-navy p-6 rounded-xl border border-gold/20 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold text-gold">WD</span>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">王总</h5>
+                            <p class="text-xs text-gray-400">外贸公司负责人</p>
+                        </div>
+                    </div>
+                    <div class="mb-3 text-gold">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-300">
+                        "课程内容非常实用，尤其是竞争对手分析和YouTube广告部分，让我们打开了新的流量渠道。通过应用课程中的技巧，我们的ROAS从3.2提升到了7.8，广告投入翻了一倍但销售增长了4倍。"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 bg-navy">
+        <div class="container mx-auto px-4">
+            <div class="bg-navy-dark p-8 md:p-12 rounded-2xl border border-gold/30 shadow-xl">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-8 md:mb-0">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">准备提升您的广告投放效果？</h2>
+                        <p class="text-gray-300">
+                            现在联系我们，获取详细课程大纲和专属学习方案，掌握顶尖投手的核心技能，实现广告效果质的飞跃。
+                        </p>
+                        <div class="mt-4 flex items-center text-gold">
+                            <i class="fas fa-certificate mr-2"></i>
+                            <span>限时优惠：现在咨询可获得账户诊断服务</span>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/3">
+                        <button onclick="opensite()" class="w-full bg-gradient-to-r from-gold to-gold-dark text-navy-dark font-bold py-4 px-6 rounded-lg shadow-lg transition-all flex items-center justify-center hover:shadow-xl hover:-translate-y-1">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            联系我们获取优惠
+                        </button>
+                        <div class="text-center mt-3 text-gray-400">
+                            <p>Telegram: @snvtr2</p>
+                            <p>微信: tangguo97a</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-navy-dark py-8 border-t border-gold/10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-6">
+                <div class="flex items-center space-x-2">
+                    
+                    <div>
+                        <h1 class="text-lg font-bold">Google<span class="text-gold">广告培训</span></h1>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-400 text-sm max-w-2xl mx-auto">
+                本课程专注于Google广告投放技巧教学，帮助广告从业者提升专业技能和实战能力。
+                所有内容均遵循Google广告政策和相关法律法规。
+            </p>
+             <div class="flex flex-col items-center md:items-end mb-6 md:mb-0">
+                    <div class="flex items-center space-x-4 mb-2">
+                        <span class="text-white">联系我们：</span>
+                        <a href="#" onclick="opensite(); return false;" class="text-gold hover:text-gold-light transition-colors">
+                            <i class="fab fa-telegram-plane mr-1"></i> @snvtr2
+                        </a>
+                        <a href="#" onclick="opensite(); return false;" class="text-gold hover:text-gold-light transition-colors">
+                            <i class="fab fa-weixin mr-1"></i> tangguo97a
+                        </a>
+                    </div>
+                </div>
+            <div class="border-t border-gold/10 mt-6 pt-6 text-center">
+                <p class="text-sm text-gray-500">© 2023 腾飞跨境出海服务. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for the scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
